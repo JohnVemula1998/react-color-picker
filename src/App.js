@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      color:"ffffff"
+    }
+  }
+  changeType = () => {
+    const color = document.getElementById("inputId").value
+    this.setState({
+      color: color,
+    })
+    //console.log(color);
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="App" style= {{background:this.state.color}}>
+        <div className='colorpicker'>
+          <h1 style={{color:this.state.color}}>Color picker</h1>
+        <input id='inputId' type="color" onChange={this.changeType}/>
+        <p style={{color:this.state.color}}>{this.state.color}</p>
+        </div>
+        
       </div>
     );
   }
